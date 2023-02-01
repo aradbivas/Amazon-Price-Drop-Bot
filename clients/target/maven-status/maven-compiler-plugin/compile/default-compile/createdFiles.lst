@@ -1,0 +1,12 @@
+clients\user\UserClient.class
+clients\product\ProductRequest.class
+clients\user\UserRespond$UserRespondBuilder.class
+clients\Bot\BotClient.class
+clients\Exception\ApiExceptionHandler.class
+clients\user\UserRespond.class
+clients\product\ProductResponse$ProductResponseBuilder.class
+clients\Exception\ApiException.class
+clients\user\UserRequest.class
+clients\product\ProductResponse.class
+clients\product\ProductClient.class
+clients\Exception\ApiRequestException.class

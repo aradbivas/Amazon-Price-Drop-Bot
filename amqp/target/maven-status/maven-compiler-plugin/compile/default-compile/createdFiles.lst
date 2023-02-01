@@ -1,0 +1,2 @@
+com\pricedrop\amqp\RabbitMQConfig.class
+com\pricedrop\amqp\RabbitMQMessageProducer.class

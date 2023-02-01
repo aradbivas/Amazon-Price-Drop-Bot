@@ -1,0 +1,6 @@
+com\pricedropservice\telegrambot\NotificationConfig.class
+com\pricedropservice\telegrambot\AmazonPriceDropBot.class
+com\pricedropservice\telegrambot\BotService.class
+com\pricedropservice\telegrambot\rabbitmq\NotificationConsumer.class
+com\pricedropservice\telegrambot\BotController.class
+com\pricedropservice\telegrambot\BotApplication.class

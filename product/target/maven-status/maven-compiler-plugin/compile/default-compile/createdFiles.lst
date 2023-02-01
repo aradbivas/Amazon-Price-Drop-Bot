@@ -1,0 +1,7 @@
+Product\ProductService.class
+Product\ProductController.class
+Product\ProductService$ProductTrackerJob.class
+Product\Product$ProductBuilder.class
+Product\ProductApplication.class
+Product\ProductRepository.class
+Product\Product.class

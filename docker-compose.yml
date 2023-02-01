@@ -1,0 +1,100 @@
+version: \"3\"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: amigoscode
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - spring
+  eureka-server:
+      image: bivas26/eureka-server:latest
+      container_name: eureka-server
+      ports:
+        - "8761:8761"
+      networks:
+        - spring
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+  product:
+    image: bivas26/product:latest
+    container_name: product
+    ports:
+      - "8080:8080"
+    networks:
+      - spring
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - postgres
+      - rabbitmq
+  user:
+    image: bivas26/user:latest
+    container_name: user
+    ports:
+      - "8081:8081"
+    networks:
+      - spring
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - postgres
+      - rabbitmq
+  telegrambotservice:
+    image: bivas26/telegrambotservice:latest
+    container_name: telegram-bot
+    ports:
+      - "8082:8082"
+    networks:
+      - spring
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - postgres
+      - rabbitmq
+
+
+
+networks:
+  postgres:
+    driver: bridge
+  spring:
+      driver: bridge
+
+
+
+volumes:
+  postgres:
+  pgadmin:

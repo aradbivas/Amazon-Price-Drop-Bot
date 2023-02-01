@@ -1,0 +1,7 @@
+User\UserRepository.class
+User\User$UserBuilder.class
+User\UserController.class
+User\UserRequest.class
+User\UserService.class
+User\User.class
+User\UserApplication.class
